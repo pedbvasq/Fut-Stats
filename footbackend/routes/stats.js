@@ -53,5 +53,15 @@ router.get('/teams/:idleague', function(req, res, next) {
    })
  })
 
+ router.get('/players', function(req, res, next) {
+  Players.findAll().
+  then(data=>{
+    res.json(data);
+  })
+  .catch(e=>{
+    console.log(e);
+  })
+ })
+
 
 module.exports = router;
