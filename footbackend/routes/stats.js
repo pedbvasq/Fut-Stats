@@ -23,7 +23,35 @@ router.get('/teams',function(req,res,next){
 }
 )
 
+router.get('/league',function(req,res,next){
+  League.findAll().
+  then(data=>{
+    res.json(data)
+  }).catch(e=>{
+    console.log(e)
 
+  })
+}
+)
+
+
+
+router.get('/teams/:idleague', function(req, res, next) {
+  let idP = req.params.idleague
+   Teams.findAll({
+      where:{
+        idleague:idP
+      }
+   }).
+   then(data =>{
+    console.log(data)
+    res.send(data);
+   })
+   .catch(e=>{
+   
+ 
+   })
+ })
 
 
 module.exports = router;
