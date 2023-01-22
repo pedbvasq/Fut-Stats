@@ -60,7 +60,7 @@ router.get('/teams/:idleague', function(req, res, next) {
  })
 
 
-router.create('/teams/', function(req, res, next) {
+router.post('/teams/', function(req, res, next) {
   // Validate request
   if (!req.body.nameteam) {
     res.status(400).send({
@@ -91,7 +91,7 @@ router.create('/teams/', function(req, res, next) {
     });
 })
  
-routes.update('/teams/:idteams', function(req, res, next){
+router.put('/teams/:idteams', function(req, res, next){
   let idP = req.params.idteams
 
   Tutorial.update(req.body, {
@@ -100,7 +100,7 @@ routes.update('/teams/:idteams', function(req, res, next){
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "Tutorial was updated successfully."
+          message: "Teams was updated successfully."
         });
       } else {
         res.send({
