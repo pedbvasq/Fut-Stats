@@ -1,2 +1,2 @@
 @include('partials.navbar')
-<h1>inicios</h1>
+<h1>ligas</h1>
