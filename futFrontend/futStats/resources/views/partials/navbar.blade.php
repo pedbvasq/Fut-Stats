@@ -22,11 +22,16 @@
 
 <body>
     @csrf
-    <nav class="navbar navbar-dark bg-primary">
-        <a href="/" class="navbar-brand">Inicio</a>
-        <a href="/ligas" class="navbar-brand">Ligas</a>
-        <a href="/jugadores" class="navbar-brand">Jugadores</a>
-        <a href="equipos" class="navbar-brand">equipos</a>
+    <nav id="navbar" class="navbar navbar-expand">
+        <a class="logo-image" href="/"> 
+            <img src="{{ asset('/assets/images/logo.PNG') }}" alt="Logo Futstats" class="img-fluid" width="250"> 
+        </a>
+
+        <div id="elements">
+            <a href="/ligas" class="navbar-brand">Ligas</a>
+            <a href="/jugadores" class="navbar-brand">Jugadores</a>
+            <a href="equipos" class="navbar-brand">Equipos</a>
+        </div>
     </nav>
    
     <script src="{{ asset('js/app.js') }}"></script>
@@ -34,3 +39,22 @@
 </body>
 
 </html>
+
+<style>
+    #navbar{
+        background-color: rgba(18,18,18,255)!important;
+    }
+
+    #elements>a{
+        padding: 0px 200px;
+        color: white;
+        font-family: Monospace, Lucida console;
+        font-weight: bold;
+
+    }
+    #elements>a:focus{
+        color: #8B0000;
+    }
+
+
+</style>
