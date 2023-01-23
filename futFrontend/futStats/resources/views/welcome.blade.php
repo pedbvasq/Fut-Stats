@@ -13,7 +13,6 @@
 </head>
 <body class="is-boxed has-animations">
     <div class="body-wrap">
-    s
         <main>
             <section class="hero">
                 <div class="container">
@@ -106,7 +105,7 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="footer-copyright">&copy; 2019 Solid, all rights reserved</div>
+                    <div class="footer-copyright">&copy; 2023 UserX, all rights reserved</div>
                 </div>
             </div>
         </footer>
