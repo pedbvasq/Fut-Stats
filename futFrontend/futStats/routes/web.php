@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\ligaController;
+use App\Http\Controllers\jugadoresController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,4 @@ Route::get('/', function () {
 
 Route::get('equipos',[EquipoController::class,'index']);
 Route::get('ligas',[ligaController::class,'index']);
+Route::get('jugadores',[jugadoresController::class,'index']);

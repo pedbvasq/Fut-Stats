@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class jugadoresController extends Controller
 {
@@ -14,7 +15,10 @@ class jugadoresController extends Controller
      */
     public function index()
     {
-        //
+        $url= env('URL_SERVER_API','http://localhost:3000/stats');
+        $response = Http::get($url.'/players');
+        $data =$response->json();
+        return view('jugadores',compact('data'));
     }
 
     /**
