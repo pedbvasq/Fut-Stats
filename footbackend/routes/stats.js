@@ -212,5 +212,79 @@ router.delete('/league/:idleague', function(req, res, next) {
   })
  })
 
+ 
+router.post('/players/', function(req, res, next) {
+  // Validate request
+  if (!req.body.idplayers) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+    return;
+  }
+
+  const players = {
+    idplayers :req.body.idplayers,
+    first_name: req.body.first_name,
+    last_name : req.body.last_name,
+    position : req.body.position,
+    salary : req.body.salary,
+    goals : req.body.goals,
+    matches: req.body.matches,
+    date_birth: req.body.date_birth,
+    id_team: req.body.id_team
+  };
+
+
+  Players.create(players)
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the Tutorial."
+      });
+    });
+})
+
+router.put('/players/:idplayers', function(req, res, next){
+  let idP = req.params.idplayers
+
+  Tutorial.update(req.body, {
+    where: {  idplayers:idp}
+  })
+    .then(num => {
+      if (num == 1) {
+        res.send({
+          message: "Players was updated successfully."
+        });
+      } else {
+        res.send({
+          message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found or req.body is empty!`
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error updating Tutorial with id=" + id
+      });
+    });
+});
+
+router.delete('/players/:idplayers', function(req, res, next) {
+  let idP = req.params.idplayers
+   League.findAll({
+      where:{
+        idplayers:idp
+      }
+   }).
+   then(data =>{
+    console.log(data)
+    res.send(data);
+   })
+   .catch(e=>{
+    console.log(e)
+   })
+ })
 
 module.exports = router;
