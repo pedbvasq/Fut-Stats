@@ -56,5 +56,9 @@
         color: #8B0000;
     }
 
+    body {
+        background-color: rgba(33,37,41,255);
+    }
+
 
 </style>
