@@ -1,6 +1,6 @@
 @include('partials.navbar')
 <div>
-    <table  class="table">
+    <table class="table table-striped table-dark">
         <thead>
             <tr>
                 <th scope="col">nombre</th>
@@ -18,3 +18,4 @@
     
     </table>
 </div>
+
