@@ -27,7 +27,7 @@
         <td> {{$equipo['points']}}</td>
         <td> {{$equipo['titles']}}</td>
         <td> 
-            <a> 
+            <a  href="{{route('teams.view',$equipo['idteams'])}}"> 
                     <img src="{{ asset('/assets/images/edit.jpg') }}" class="img-fluid" width="50"> 
                 </a>
 

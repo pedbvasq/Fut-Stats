@@ -25,6 +25,23 @@ router.get('/teams',function(req,res,next){
 }
 )
 
+router.get('/teams/:idteams', function(req, res, next) {
+  let idP = req.params.idteams
+   Teams.findOne({
+      where:{
+        idteams:idP
+      }
+   }).
+   then(data =>{
+    console.log(data)
+    res.send(data);
+   })
+   .catch(e=>{
+    console.log(e)
+   
+ 
+   })
+ })
 router.get('/teams/:idleague', function(req, res, next) {
   let idP = req.params.idleague
    Teams.findAll({
@@ -101,9 +118,10 @@ router.post('/teams/', function(req, res, next) {
 router.put('/teams/:idteams', function(req, res, next){
   let idP = req.params.idteams
 
-  Tutorial.update(req.body, {
-    where: {  idleague:idP}
+  Teams.update(req.body, {
+    where: {  idteams:idP}
   })
+
     .then(num => {
       if (num == 1) {
         res.send({
@@ -111,7 +129,7 @@ router.put('/teams/:idteams', function(req, res, next){
         });
       } else {
         res.send({
-          message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found or req.body is empty!`
+          message: `Cannot update Teams with id=${idP}. Maybe Teams was not found or req.body is empty!`
         });
       }
     })
@@ -168,7 +186,7 @@ router.post('/league/', function(req, res, next) {
 router.put('/league/:idleague', function(req, res, next){
   let idP = req.params.idleague
 
-  Tutorial.update(req.body, {
+  Players.update(req.body, {
     where: {  idleague:idP}
   })
     .then(num => {

@@ -94,9 +94,34 @@ class EquipoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
+
+        $request->validate([
+            'idteams'=>'required',
+            'nameteam'=>'required',
+            'ab'=>'required',
+            'budget'=>'required',
+            'idleague'=>'required',
+            'points'=>'required',
+            'titles'=>'required',
+        
+          ]);
+        $url= env('URL_SERVER_API','http://localhost:3000/stats');
+        $response = Http::put($url.'/teams/'.$request->idteams,[
+           'idteams'=>$request->idteams,
+           'nameteam'=>$request->nameteam,
+           'ab'=>$request->ab,
+           'budget'=>$request->budget,
+           'idleague'=>$request->idleague,
+           'points'=>$request->points,
+           'titles'=>$request->titles,
+           
+        ]);
+
+        return redirect()->route('teams.index');
+
     }
 
 
@@ -105,7 +130,13 @@ class EquipoController extends Controller
         //
         $url= env('URL_SERVER_API','http://localhost:3000/stats');
         $response = Http::delete($url.'/teams/'.$idteams);
-        return $response;
         return redirect()->route('teams.index');
+    }
+
+    public function view($idteams){
+        $url= env('URL_SERVER_API','http://localhost:3000/stats');
+        $response = Http::get($url.'/teams/'.$idteams);
+        $team = $response->json();
+        return view('forms.equiposFormEdit',compact('team'));
     }
 }

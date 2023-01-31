@@ -31,16 +31,17 @@ Route::get('ligaForm', function () {
 
 
 //Get de Admin
-Route::get('ligaAdmin',[adminLigaController::class,'index']);
+Route::get('ligaAdmin',[adminLigaController::class,'index'])->name('liga.index');
 Route::get('equiposAdmin',[adminEquipoController::class,'index'])->name('teams.index');
 Route::get('jugadoresAdmin',[adminJugadoresController::class,'index']);
-
+Route::get('/equiposAdmin/{idteams}',[EquipoController::class,'view'])->name('teams.view');
+Route::get('equiposform',[EquipoController::class,'create']);
 
 //Get de User
 Route::get('equipos',[EquipoController::class,'index']);
 Route::get('ligas',[ligaController::class,'index']);
 Route::get('jugadores',[jugadoresController::class,'index']);
-Route::get('equiposform',[EquipoController::class,'create']);
+
 
 //post
 Route::post('teams',[EquipoController::class,'store'])->name('teams');
@@ -49,6 +50,9 @@ Route::post('league',[adminLigaController::class,'store'])->name('league');
 
 //delete
 
-Route::get('jugadoresAdmin/delete/{idteams}',[EquipoController::class,'delete'])->name('team.delete');
+Route::get('equiposAdmin/delete/{idteams}',[EquipoController::class,'delete'])->name('team.delete');
 
+
+//edit
+Route::post('equiposAdmin/update',[EquipoController::class,'update'])->name('teams.update');
 ?>
