@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\ligaController;
 use App\Http\Controllers\jugadoresController;
-
+use App\Http\Controllers\adminLigaController;
+use App\Http\Controllers\adminEquipoController;
+use App\Http\Controllers\adminJugadoresController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,22 +19,31 @@ use App\Http\Controllers\jugadoresController;
 |
 */
 
+// Get de pagina principal
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin',function(){
-    return view('admin');
+Route::get('ligaForm', function () {
+    return view('/forms/ligaForm');
 });
 
 
-//get
+//Get de Admin
+Route::get('ligaAdmin',[adminLigaController::class,'index']);
+Route::get('equiposAdmin',[adminEquipoController::class,'index']);
+Route::get('jugadoresAdmin',[adminJugadoresController::class,'index']);
+
+
+//Get de User
 Route::get('equipos',[EquipoController::class,'index']);
 Route::get('ligas',[ligaController::class,'index']);
 Route::get('jugadores',[jugadoresController::class,'index']);
 Route::get('teams',[EquipoController::class,'create']);
+
 //post
 Route::post('teams',[EquipoController::class,'store'])->name('teams');
-
+Route::post('league',[adminLigaController::class,'store'])->name('league');
 
 ?>

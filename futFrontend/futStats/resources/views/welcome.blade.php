@@ -21,7 +21,7 @@
 	                        <h1 class="hero-title mt-0">Vive la pasion del futbol</h1>
 	                        <p class="hero-paragraph">Consulta datos de tus jugadores, ligas y equipos preferidos</p>
 	                        <div class="hero-cta"><a class="button button-primary" href="https://www.youtube.com/watch?v=0acgpCo6HFc">Descubrir más</a></div>
-                            <a href = "/admin">Soy un administrador</a>
+                            <a href = "/ligaAdmin">Soy un administrador</a>
 						</div>
                         
 						<div class="hero-figure anime-element">

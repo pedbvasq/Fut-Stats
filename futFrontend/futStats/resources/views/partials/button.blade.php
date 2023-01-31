@@ -1,4 +1,3 @@
-@include('partials.adminNavbar')
 <div id= "button">
     <a> 
         <img src="{{ asset('/assets/images/plus.png') }}" class="img-fluid" width="50"> 
@@ -9,6 +8,7 @@
     #button{
         padding-top: 25px;
         text-align: center;
+        padding-bottom: 25px;
     }
 
 </style>

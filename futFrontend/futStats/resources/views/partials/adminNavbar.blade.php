@@ -28,9 +28,9 @@
         </a>
 
         <div id="elements">
-            <a href="/ligas" class="navbar-brand">Ligas</a>
-            <a href="/jugadores" class="navbar-brand">Jugadores</a>
-            <a href="equipos" class="navbar-brand">Equipos</a>
+            <a href="/ligaAdmin" class="navbar-brand">Ligas</a>
+            <a href="/jugadoresAdmin" class="navbar-brand">Jugadores</a>
+            <a href="/equiposAdmin" class="navbar-brand">Equipos</a>
             <a>Admin Mode</a>
         </div>
     </nav>
