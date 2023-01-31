@@ -32,15 +32,15 @@ Route::get('ligaForm', function () {
 
 //Get de Admin
 Route::get('ligaAdmin',[adminLigaController::class,'index']);
-Route::get('equiposAdmin',[adminEquipoController::class,'index']);
-Route::get('jugadoresAdmin',[adminJugadoresController::class,'index'])->name('teams.index');
+Route::get('equiposAdmin',[adminEquipoController::class,'index'])->name('teams.index');
+Route::get('jugadoresAdmin',[adminJugadoresController::class,'index']);
 
 
 //Get de User
 Route::get('equipos',[EquipoController::class,'index']);
 Route::get('ligas',[ligaController::class,'index']);
 Route::get('jugadores',[jugadoresController::class,'index']);
-Route::get('teams',[EquipoController::class,'create']);
+Route::get('equiposform',[EquipoController::class,'create']);
 
 //post
 Route::post('teams',[EquipoController::class,'store'])->name('teams');

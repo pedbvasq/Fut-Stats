@@ -28,7 +28,7 @@ class EquipoController extends Controller
     public function create()
     {
         //
-        return view("teams");
+        return view("forms.equiposform");
     }
 
     /**
@@ -61,7 +61,7 @@ class EquipoController extends Controller
            
         ]);
 
-        return $response;
+        return redirect()->route('teams.index');
    
     }
 
@@ -106,6 +106,6 @@ class EquipoController extends Controller
         $url= env('URL_SERVER_API','http://localhost:3000/stats');
         $response = Http::delete($url.'/teams/'.$idteams);
         return $response;
-        // return redirect()->route('teams.index');
+        return redirect()->route('teams.index');
     }
 }
