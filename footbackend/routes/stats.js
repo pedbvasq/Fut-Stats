@@ -43,23 +43,26 @@ router.get('/teams/:idleague', function(req, res, next) {
    })
  })
 
- router.delete('/teams/:idteams', function(req, res, next) {
+ router.delete('/teams/:idteams', async function(req, res, next) {
   let idP = req.params.idteams
-   Teams.findAll({
+  try {
+    const ply = await Teams.findOne({
       where:{
         idteams:idP
       }
-   }).
-   then(data =>{
-    console.log(data)
-    res.send(data);
-   })
-   .catch(e=>{
-    console.log(e)
-   
+    });
+    if (!ply) {
+      return res.status(404).send({ error: 'Equipo no Encontrado' });
+    }
+    await ply.destroy();
+    return res.status(204).send();
+  } catch (error) {
+    return res.status(500).send({ error: error.message });
+  }
+
+ }
  
-   })
- })
+ )
 
 
 router.post('/teams/', function(req, res, next) {

@@ -33,7 +33,7 @@ Route::get('ligaForm', function () {
 //Get de Admin
 Route::get('ligaAdmin',[adminLigaController::class,'index']);
 Route::get('equiposAdmin',[adminEquipoController::class,'index']);
-Route::get('jugadoresAdmin',[adminJugadoresController::class,'index']);
+Route::get('jugadoresAdmin',[adminJugadoresController::class,'index'])->name('teams.index');
 
 
 //Get de User
@@ -45,5 +45,10 @@ Route::get('teams',[EquipoController::class,'create']);
 //post
 Route::post('teams',[EquipoController::class,'store'])->name('teams');
 Route::post('league',[adminLigaController::class,'store'])->name('league');
+
+
+//delete
+
+Route::get('jugadoresAdmin/delete/{idteams}',[EquipoController::class,'delete'])->name('team.delete');
 
 ?>

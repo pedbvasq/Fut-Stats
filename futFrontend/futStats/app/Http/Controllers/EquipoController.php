@@ -99,14 +99,13 @@ class EquipoController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+
+    public function delete($idteams)
     {
         //
+        $url= env('URL_SERVER_API','http://localhost:3000/stats');
+        $response = Http::delete($url.'/teams/'.$idteams);
+        return $response;
+        // return redirect()->route('teams.index');
     }
 }

@@ -24,7 +24,7 @@
                     <img src="{{ asset('/assets/images/edit.jpg') }}" class="img-fluid" width="50"> 
                 </a>
 
-                <a> 
+                <a href="{{route('team.delete',$equipo['idteams'])}}"> 
                     <img src="{{ asset('/assets/images/delete.png') }}" class="img-fluid" width="70"> 
             </a>
         </td>
