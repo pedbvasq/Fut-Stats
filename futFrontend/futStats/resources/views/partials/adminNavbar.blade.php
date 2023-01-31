@@ -30,7 +30,8 @@
         <div id="elements">
             <a href="/ligas" class="navbar-brand">Ligas</a>
             <a href="/jugadores" class="navbar-brand">Jugadores</a>
-            <a href="/equipos" class="navbar-brand">Equipos</a>
+            <a href="equipos" class="navbar-brand">Equipos</a>
+            <a>Admin Mode</a>
         </div>
     </nav>
    
@@ -46,7 +47,7 @@
     }
 
     #elements>a{
-        padding: 0px 200px;
+        padding: 0px 150px;
         color: white;
         font-family: Monospace, Lucida console;
         font-weight: bold;

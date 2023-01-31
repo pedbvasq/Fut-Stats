@@ -20,7 +20,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::get('/admin',function(){
+    return view('admin');
+});
 
 Route::get('equipos',[EquipoController::class,'index']);
 Route::get('ligas',[ligaController::class,'index']);
