@@ -64,7 +64,8 @@ router.get('/teams/:idleague', function(req, res, next) {
 
 router.post('/teams/', function(req, res, next) {
   // Validate request
-  if (!req.body.nameteam) {
+  if (!req.body) {
+      console.log(res)
     res.status(400).send({
       message: "Content can not be empty!"
     });
@@ -75,9 +76,10 @@ router.post('/teams/', function(req, res, next) {
     idteams :req.body.idteams,
     nameteam: req.body.nameteam,
     ab : req.body.ab,
-    budget:req.body.ab,
+    budget:req.body.budget,
     points:req.body.points,
-    titles:req.body.titles
+    titles:req.body.titles,
+    idleague:req.body.idleague
   };
 
 
@@ -213,7 +215,7 @@ router.delete('/league/:idleague', function(req, res, next) {
  })
 
  
-router.post('/players/', function(req, res, next) {
+router.post('/players', function(req, res, next) {
   // Validate request
   if (!req.body.idplayers) {
     res.status(400).send({

@@ -1,4 +1,6 @@
 @include('partials.navbar')
+
+
 <table class="table table-striped table-dark">
   <thead>
     <tr>

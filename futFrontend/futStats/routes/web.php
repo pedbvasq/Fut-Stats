@@ -21,7 +21,10 @@ Route::get('/', function () {
 });
 
 
-
+//get
 Route::get('equipos',[EquipoController::class,'index']);
 Route::get('ligas',[ligaController::class,'index']);
 Route::get('jugadores',[jugadoresController::class,'index']);
+Route::get('teams',[EquipoController::class,'create']);
+//post
+Route::post('teams',[EquipoController::class,'store'])->name('teams');

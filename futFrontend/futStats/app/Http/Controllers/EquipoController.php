@@ -28,7 +28,7 @@ class EquipoController extends Controller
     public function create()
     {
         //
-        return view("equipos.create");
+        return view("teams");
     }
 
     /**
@@ -39,7 +39,30 @@ class EquipoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'idteams'=>'required',
+            'nameteam'=>'required',
+            'ab'=>'required',
+            'budget'=>'required',
+            'idleague'=>'required',
+            'points'=>'required',
+            'titles'=>'required',
+        
+          ]);
+        $url= env('URL_SERVER_API','http://localhost:3000/stats');
+        $response = Http::post($url.'/teams/',[
+           'idteams'=>$request->idteams,
+           'nameteam'=>$request->nameteam,
+           'ab'=>$request->ab,
+           'budget'=>$request->budget,
+           'idleague'=>$request->idleague,
+           'points'=>$request->points,
+           'titles'=>$request->titles,
+           
+        ]);
+
+        return $response;
+   
     }
 
     /**
