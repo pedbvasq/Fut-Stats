@@ -28,7 +28,7 @@ class ligaController extends Controller
      */
     public function create()
     {
-        //
+        return view("forms.ligaForm");
         
     }
 
@@ -40,7 +40,19 @@ class ligaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'idleague'=>'required',
+            'leaguename'=>'required',
+            'budget'=>'required',
+          ]);
+        $url= env('URL_SERVER_API','http://localhost:3000/stats');
+        $response = Http::post($url.'/league/',[
+           'idleague'=>$request->idleague,
+           'leaguename'=>$request->leaguename,
+           'budget'=>$request->budget,   
+        ]);
+
+        return redirect()->route('league.index');
     }
 
     /**
@@ -72,9 +84,22 @@ class ligaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'idleague'=>'required',
+            'leaguename'=>'required',
+            'budget'=>'required',
+        
+          ]);
+        $url= env('URL_SERVER_API','http://localhost:3000/stats');
+        $response = Http::put($url.'/league/'.$request->idleague,[
+           'idleague'=>$request->idleague,
+           'leaguename'=>$request->leaguename,
+           'budget'=>$request->budget,
+        ]);
+
+        return redirect()->route('league.index');
     }
 
     /**
@@ -83,8 +108,19 @@ class ligaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($idleague)
     {
         //
+        $url= env('URL_SERVER_API','http://localhost:3000/stats');
+        $response = Http::delete($url.'/league/'.$idleague);
+        return redirect()->route('league.index');
+    }
+
+
+    public function view($idleague){
+        $url= env('URL_SERVER_API','http://localhost:3000/stats');
+        $response = Http::get($url.'/league/'.$idleague);
+        $league = $response->json();
+        return view('forms.ligaFormEdit',compact('league'));
     }
 }

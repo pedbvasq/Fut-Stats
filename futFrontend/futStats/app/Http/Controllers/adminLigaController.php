@@ -40,19 +40,7 @@ class adminLigaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'idleague'=>'required',
-            'leaguename'=>'required',
-            'budget'=>'required',
-          ]);
-        $url= env('URL_SERVER_API','http://localhost:3000/stats');
-        $response = Http::post($url.'/league/',[
-           'idleague'=>$request->idleague,
-           'leaguename'=>$request->leaguename,
-           'budget'=>$request->budget, 
-        ]);
-
-        return $response;
+        
     }
 
     /**

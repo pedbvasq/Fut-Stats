@@ -31,7 +31,6 @@
             <a href="/ligas" class="navbar-brand">Ligas</a>
             <a href="/jugadores" class="navbar-brand">Jugadores</a>
             <a href="/equipos" class="navbar-brand">Equipos</a>
-            <a href="teams" class="navbar-brand">Create</a>
         </div>
     </nav>
    

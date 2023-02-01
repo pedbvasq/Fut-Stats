@@ -1,5 +1,11 @@
 @include('partials.adminNavbar')
-@include('partials.button')
+
+<div id= "button">
+    <a href =""> 
+        <img src="{{ asset('/assets/images/plus.png') }}" class="img-fluid" width="50"> 
+    </a>
+<div>
+
 
 <table class="table table-striped table-dark">
   <thead>
@@ -43,3 +49,12 @@
       @endforeach
   </tbody>
 </table>
+
+<style>
+    #button{
+        padding-top: 25px;
+        text-align: center;
+        padding-bottom: 25px;
+    }
+
+</style>

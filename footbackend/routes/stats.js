@@ -77,9 +77,7 @@ router.get('/teams/:idleague', function(req, res, next) {
     return res.status(500).send({ error: error.message });
   }
 
- }
- 
- )
+ })
 
 
 router.post('/teams/', function(req, res, next) {
@@ -154,17 +152,53 @@ router.get('/league',function(req,res,next){
   })
 });
 
+router.get('/league/:idleague', function(req, res, next) {
+  let idP = req.params.idleague
+   League.findOne({
+      where:{
+        idleague:idP
+      }
+   }).
+   then(data =>{
+    console.log(data)
+    res.send(data);
+   })
+   .catch(e=>{
+    console.log(e)
+   
+ 
+   })
+ })
+ router.delete('/league/:idleague', async function(req, res, next) {
+  let idP = req.params.idleague
+  try {
+    const ply = await League.findOne({
+      where:{
+        idleague:idP
+      }
+    });
+    if (!ply) {
+      return res.status(404).send({ error: 'Liga no Encontrada' });
+    }
+    await ply.destroy();
+    return res.status(204).send();
+  } catch (error) {
+    return res.status(500).send({ error: error.message });
+  }
 
+ })
+ 
 router.post('/league/', function(req, res, next) {
   // Validate request
-  if (!req.body.nameleague) {
+  if (!req.body) {
+    console.log(res)
     res.status(400).send({
       message: "Content can not be empty!"
     });
     return;
   }
 
-  const leagues = {
+  const league = {
     idleague :req.body.idleague,
     leaguename: req.body.leaguename,
     budget : req.body.budget
@@ -186,7 +220,7 @@ router.post('/league/', function(req, res, next) {
 router.put('/league/:idleague', function(req, res, next){
   let idP = req.params.idleague
 
-  Players.update(req.body, {
+  League.update(req.body, {
     where: {  idleague:idP}
   })
     .then(num => {
@@ -196,32 +230,18 @@ router.put('/league/:idleague', function(req, res, next){
         });
       } else {
         res.send({
-          message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found or req.body is empty!`
+          message: `Cannot update League with id=${id}. Maybe League was not found or req.body is empty!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error updating Tutorial with id=" + id
+        message: "Error updating League with id=" + id
       });
     });
 });
 
-router.delete('/league/:idleague', function(req, res, next) {
-  let idP = req.params.idleague
-   League.findAll({
-      where:{
-        idleague:idP
-      }
-   }).
-   then(data =>{
-    console.log(data)
-    res.send(data);
-   })
-   .catch(e=>{
-    console.log(e)
-   })
- })
+
 
 
 //PLAYERS: Fabrizzio Ontaneda
