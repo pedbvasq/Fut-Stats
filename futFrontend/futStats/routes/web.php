@@ -46,13 +46,18 @@ Route::get('jugadores',[jugadoresController::class,'index']);
 //post
 Route::post('teams',[EquipoController::class,'store'])->name('teams');
 Route::post('league',[adminLigaController::class,'store'])->name('league');
+Route::post('player',[jugadoresController::class,'store'])->name('player');
+
 
 
 //delete
 
 Route::get('equiposAdmin/delete/{idteams}',[EquipoController::class,'delete'])->name('team.delete');
-
+Route::get('jugaroesAdmin/delete/{idplayer}',[jugadoresController::class,'delete'])->name('player.delete');
 
 //edit
 Route::post('equiposAdmin/update',[EquipoController::class,'update'])->name('teams.update');
+Route::post('equiposAdmin/update',[jugadoresController::class,'update'])->name('players.update');
+
+
 ?>

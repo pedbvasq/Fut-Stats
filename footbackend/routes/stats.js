@@ -2,70 +2,70 @@ var express = require('express');
 const { Op } = require("sequelize");
 var router = express.Router();
 const { Sequelize } = require('../models');
-const League = require('../models').league ;
+const League = require('../models').league;
 const Teams = require('../models').teams;
 const Players = require('../models').players;
 
 
-router.get('/', function(req, res, next) {
-   res.send("NO DEFINIDA");
+router.get('/', function (req, res, next) {
+  res.send("NO DEFINIDA");
 });
 
 
 //TEAMS: Pedro Bajaña
 
-router.get('/teams',function(req,res,next){
+router.get('/teams', function (req, res, next) {
   Teams.findAll().
-  then(data=>{
-    res.json(data)
-  }).catch(e=>{
-    console.log(e)
+    then(data => {
+      res.json(data)
+    }).catch(e => {
+      console.log(e)
 
-  })
+    })
 }
 )
 
-router.get('/teams/:idteams', function(req, res, next) {
+router.get('/teams/:idteams', function (req, res, next) {
   let idP = req.params.idteams
-   Teams.findOne({
-      where:{
-        idteams:idP
-      }
-   }).
-   then(data =>{
-    console.log(data)
-    res.send(data);
-   })
-   .catch(e=>{
-    console.log(e)
-   
- 
-   })
- })
-router.get('/teams/:idleague', function(req, res, next) {
-  let idP = req.params.idleague
-   Teams.findAll({
-      where:{
-        idleague:idP
-      }
-   }).
-   then(data =>{
-    console.log(data)
-    res.send(data);
-   })
-   .catch(e=>{
-    console.log(e)
-   
- 
-   })
- })
+  Teams.findOne({
+    where: {
+      idteams: idP
+    }
+  }).
+    then(data => {
+      console.log(data)
+      res.send(data);
+    })
+    .catch(e => {
+      console.log(e)
 
- router.delete('/teams/:idteams', async function(req, res, next) {
+
+    })
+})
+router.get('/teams/:idleague', function (req, res, next) {
+  let idP = req.params.idleague
+  Teams.findAll({
+    where: {
+      idleague: idP
+    }
+  }).
+    then(data => {
+      console.log(data)
+      res.send(data);
+    })
+    .catch(e => {
+      console.log(e)
+
+
+    })
+})
+
+router.delete('/teams/:idteams', async function (req, res, next) {
   let idP = req.params.idteams
   try {
     const ply = await Teams.findOne({
-      where:{
-        idteams:idP
+      where: {
+        idteams: idP
       }
     });
     if (!ply) {
@@ -77,15 +77,15 @@ router.get('/teams/:idleague', function(req, res, next) {
     return res.status(500).send({ error: error.message });
   }
 
- }
- 
- )
+}
+
+)
 
 
-router.post('/teams/', function(req, res, next) {
+router.post('/teams/', function (req, res, next) {
   // Validate request
   if (!req.body) {
-      console.log(res)
+    console.log(res)
     res.status(400).send({
       message: "Content can not be empty!"
     });
@@ -93,13 +93,13 @@ router.post('/teams/', function(req, res, next) {
   }
 
   const teams = {
-    idteams :req.body.idteams,
+    idteams: req.body.idteams,
     nameteam: req.body.nameteam,
-    ab : req.body.ab,
-    budget:req.body.budget,
-    points:req.body.points,
-    titles:req.body.titles,
-    idleague:req.body.idleague
+    ab: req.body.ab,
+    budget: req.body.budget,
+    points: req.body.points,
+    titles: req.body.titles,
+    idleague: req.body.idleague
   };
 
 
@@ -114,12 +114,12 @@ router.post('/teams/', function(req, res, next) {
       });
     });
 })
- 
-router.put('/teams/:idteams', function(req, res, next){
+
+router.put('/teams/:idteams', function (req, res, next) {
   let idP = req.params.idteams
 
   Teams.update(req.body, {
-    where: {  idteams:idP}
+    where: { idteams: idP }
   })
 
     .then(num => {
@@ -144,18 +144,18 @@ router.put('/teams/:idteams', function(req, res, next){
 
 //LEAGUE: Aaron Franco
 
-router.get('/league',function(req,res,next){
+router.get('/league', function (req, res, next) {
   League.findAll().
-  then(data=>{
-    res.json(data)
-  }).catch(e=>{
-    console.log(e)
+    then(data => {
+      res.json(data)
+    }).catch(e => {
+      console.log(e)
 
-  })
+    })
 });
 
 
-router.post('/league/', function(req, res, next) {
+router.post('/league/', function (req, res, next) {
   // Validate request
   if (!req.body.nameleague) {
     res.status(400).send({
@@ -165,9 +165,9 @@ router.post('/league/', function(req, res, next) {
   }
 
   const leagues = {
-    idleague :req.body.idleague,
+    idleague: req.body.idleague,
     leaguename: req.body.leaguename,
-    budget : req.body.budget
+    budget: req.body.budget
   };
 
 
@@ -183,11 +183,11 @@ router.post('/league/', function(req, res, next) {
     });
 })
 
-router.put('/league/:idleague', function(req, res, next){
+router.put('/league/:idleague', function (req, res, next) {
   let idP = req.params.idleague
 
   Players.update(req.body, {
-    where: {  idleague:idP}
+    where: { idleague: idP }
   })
     .then(num => {
       if (num == 1) {
@@ -207,38 +207,75 @@ router.put('/league/:idleague', function(req, res, next){
     });
 });
 
-router.delete('/league/:idleague', function(req, res, next) {
+router.delete('/league/:idleague', function (req, res, next) {
   let idP = req.params.idleague
-   League.findAll({
-      where:{
-        idleague:idP
-      }
-   }).
-   then(data =>{
-    console.log(data)
-    res.send(data);
-   })
-   .catch(e=>{
-    console.log(e)
-   })
- })
+  League.findAll({
+    where: {
+      idleague: idP
+    }
+  }).
+    then(data => {
+      console.log(data)
+      res.send(data);
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
 
 
 //PLAYERS: Fabrizzio Ontaneda
- router.get('/players', function(req, res, next) {
+router.get('/players', function (req, res, next) {
   Players.findAll().
-  then(data=>{
-    res.json(data);
-  })
-  .catch(e=>{
-    console.log(e);
-  })
- })
+    then(data => {
+      res.json(data);
+    })
+    .catch(e => {
+      console.log(e);
+    })
+})
 
- 
-router.post('/players', function(req, res, next) {
+
+router.get('/players/:idplayers', function (req, res, next) {
+  let idPl = req.params.idplayers
+  Players.findOne({
+    where: {
+      idPlayers: idPl
+    }
+  }).
+    then(data => {
+      console.log(data);
+      res.send(data);
+    })
+    .catch(e => {
+      console.log(e)
+    })
+
+})
+
+router.delete('/players/:idplayers', async function (req, res, next) {
+  let idPl = req.params.idteams
+  try {
+    const player = await Teams.findOne({
+      where: {
+        idplayers: player
+      }
+    });
+    if (!player) {
+      return res.status(404).send({ error: 'Jugador no Encontrado' });
+    }
+    await player.destroy();
+    return res.status(204).send();
+  } catch (error) {
+    return res.status(500).send({ error: error.message });
+  }
+
+})
+
+router.post('/players/', function (req, res, next) {
   // Validate request
-  if (!req.body.idplayers) {
+  if (!req.body) {
+    console.log(res)
     res.status(400).send({
       message: "Content can not be empty!"
     });
@@ -246,18 +283,15 @@ router.post('/players', function(req, res, next) {
   }
 
   const players = {
-    idplayers :req.body.idplayers,
-    first_name: req.body.first_name,
-    last_name : req.body.last_name,
-    position : req.body.position,
-    salary : req.body.salary,
-    goals : req.body.goals,
+    idplayers: req.body.idplayers,
+    firts_name: req.body.firts_name,
+    last_name: req.body.last_name,
+    position: req.body.position,
+    goals: req.body.goals,
     matches: req.body.matches,
     date_birth: req.body.date_birth,
-    id_team: req.body.id_team
+    idteam: req.body.idteam
   };
-
-
   Players.create(players)
     .then(data => {
       res.send(data);
@@ -270,12 +304,13 @@ router.post('/players', function(req, res, next) {
     });
 })
 
-router.put('/players/:idplayers', function(req, res, next){
-  let idP = req.params.idplayers
+router.put('/players/:idplayers', function (req, res, next) {
+  let idPl = req.params.idteams
 
-  Tutorial.update(req.body, {
-    where: {  idplayers:idp}
+  Teams.update(req.body, {
+    where: { idteams: idPl }
   })
+
     .then(num => {
       if (num == 1) {
         res.send({
@@ -283,7 +318,7 @@ router.put('/players/:idplayers', function(req, res, next){
         });
       } else {
         res.send({
-          message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found or req.body is empty!`
+          message: `Cannot update Players with id=${idPl}. Maybe Teams was not found or req.body is empty!`
         });
       }
     })
@@ -292,22 +327,7 @@ router.put('/players/:idplayers', function(req, res, next){
         message: "Error updating Tutorial with id=" + id
       });
     });
-});
+})
 
-router.delete('/players/:idplayers', function(req, res, next) {
-  let idP = req.params.idplayers
-   League.findAll({
-      where:{
-        idplayers:idp
-      }
-   }).
-   then(data =>{
-    console.log(data)
-    res.send(data);
-   })
-   .catch(e=>{
-    console.log(e)
-   })
- })
 
 module.exports = router;
