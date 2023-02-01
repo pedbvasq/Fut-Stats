@@ -1,5 +1,11 @@
 @include('partials.adminNavbar')
-@include('partials.button')
+
+<div id= "button">
+    <a href ="/jugadoresform"> 
+        <img src="{{ asset('/assets/images/plus.png') }}" class="img-fluid" width="50"> 
+    </a>
+<div>
+
 
 <table class="table table-striped table-dark">
   <thead>
@@ -31,11 +37,11 @@
         <td> {{$jugadores['date_birth']}}</td>
         <td> {{$jugadores['idteam']}}</td>
         <td> 
-            <a> 
+            <a href="{{route('players.view',$jugadores['idplayers'])}}"> 
                     <img src="{{ asset('/assets/images/edit.jpg') }}" class="img-fluid" width="50"> 
                 </a>
 
-                <a> 
+                <a  href="{{route('players.delete',$jugadores['idplayers'])}}"> 
                     <img src="{{ asset('/assets/images/delete.png') }}" class="img-fluid" width="70"> 
             </a>
         </td>
@@ -43,3 +49,12 @@
       @endforeach
   </tbody>
 </table>
+
+<style>
+    #button{
+        padding-top: 25px;
+        text-align: center;
+        padding-bottom: 25px;
+    }
+
+</style>

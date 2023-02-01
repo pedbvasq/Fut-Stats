@@ -1,14 +1,14 @@
 @include('partials.adminNavbar')
-<form action="{{route('league')}}" method="post">
+<form action="{{route('league.update')}}" method="post">
 @csrf
   <label for="id">ID de Liga:</label>
-  <input type="number" id="idleague" name="idleague">
+  <input type="number" id="idleague" name="idleague" value="{{$league['idleague']}}">
   
-  <label for="name">Nombre de Liga:</label>
-  <input type="text" id="leaguename" name="leaguename">
+  <label for="name">Nombre de la Liga:</label>
+  <input type="text" id="leaguename" name="leaguename" value="{{$league['leaguename']}}">
   
   <label for="budget">Presupuesto (USD):</label>
-  <input type="text" id="budget" name="budget">
+  <input type="text" id="budget" name="budget" value="{{$league['budget']}}">
   
   <input type="submit" value="Submit">
 </form>

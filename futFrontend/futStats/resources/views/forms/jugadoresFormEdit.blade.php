@@ -1,8 +1,8 @@
 @include('partials.adminNavbar')
-<form action="{{route('teams.update')}}" method="post">
+<form action="{{route('players.update')}}" method="post">
 @csrf
-<label for="id">ID de Jugador:</label>
-  <input type="number" id="idplayers" name="idplayers" value="{{$player['idteams']}}">
+  <label for="id">ID de Jugador:</label>
+  <input type="number" id="idplayers" name="idplayers" value="{{$player['idplayers']}}">
   
   <label for="name">Nombre:</label>
   <input type="text" id="firts_name" name="firts_name"  value="{{$player['firts_name']}}">
@@ -26,7 +26,7 @@
   <input type="number" id="matches" name="matches" value="{{$player['matches']}}">
   
   <label for="id">Fecha de nacimiento:</label>
-  <input type="number" id="date_birth" name="date_birth" value="{{$player['date_birth']}}">
+  <input type="text" id="date_birth" name="date_birth" value="{{$player['date_birth']}}">
   
   <label for="id">ID Team :</label>
   <input type="number" id="idteam" name="idteam" value="{{$player['idteam']}}">

@@ -23,11 +23,11 @@
         <td> {{$liga['leaguename']}}</td>
         <td> {{$liga['budget']}}</td>
         <td> 
-            <a> 
+            <a href="{{route('league.view',$liga['idleague'])}}"> 
                 <img src="{{ asset('/assets/images/edit.jpg') }}" class="img-fluid" width="50"> 
             </a>
 
-            <a> 
+            <a href="{{route('league.delete',$liga['idleague'])}}"> 
                 <img src="{{ asset('/assets/images/delete.png') }}" class="img-fluid" width="70"> 
             </a>
         </td>

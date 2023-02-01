@@ -39,3 +39,12 @@
       @endforeach
   </tbody>
 </table>
+
+<style>
+    #button{
+        padding-top: 25px;
+        text-align: center;
+        padding-bottom: 25px;
+    }
+
+</style>

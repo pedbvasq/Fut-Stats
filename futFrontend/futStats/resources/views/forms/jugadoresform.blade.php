@@ -28,7 +28,7 @@
 
   
   <label for="id">Fecha de nacimiento:</label>
-  <input type="number" id="date_birth" name="date_birth">
+  <input type="text" id="date_birth" name="date_birth">
   
   <label for="id">ID Team :</label>
   <input type="number" id="idteam" name="idteam">

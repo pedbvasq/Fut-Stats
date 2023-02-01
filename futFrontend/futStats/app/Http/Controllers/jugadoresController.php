@@ -44,6 +44,8 @@ class jugadoresController extends Controller
             'idplayers'=>'required',
             'firts_name'=>'required',
             'last_name'=>'required',
+            'position'=>'required',
+            'salary'=>'required',
             'goals'=>'required',
             'assists'=>'required',
             'matches'=>'required',
@@ -53,18 +55,19 @@ class jugadoresController extends Controller
           ]);
         $url= env('URL_SERVER_API','http://localhost:3000/stats');
         $response = Http::post($url.'/players/',[
-           'idplayers'=>$request->idplayers,
-           'firts_name'=>$request->firts_name,
-           'last_name'=>$request->last_name,
-           'goals'=>$request->goals,
-           'assists'=>$request->assists,
-           'matches'=>$request->matches,
-           'date_birth'=>$request->date_birth,
-           'idteam'=>$request->idteam,
+            'idplayers'=>$request->idplayers,
+            'firts_name'=>$request->firts_name,
+            'last_name'=>$request->last_name,
+            'position'=>$request->position,
+            'salary'=>$request->salary,
+            'goals'=>$request->goals,
+            'assists'=>$request->assists,
+            'matches'=>$request->matches,
+            'date_birth'=>$request->date_birth,
+            'idteam'=>$request->idteam,
         ]);
 
         return redirect()->route('players.index');
-   
     } 
 
     /**
@@ -96,13 +99,15 @@ class jugadoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
         $request->validate([
             'idplayers'=>'required',
             'firts_name'=>'required',
             'last_name'=>'required',
+            'position'=>'required',
+            'salary'=>'required',
             'goals'=>'required',
             'assists'=>'required',
             'matches'=>'required',
@@ -111,10 +116,12 @@ class jugadoresController extends Controller
         
           ]);
         $url= env('URL_SERVER_API','http://localhost:3000/stats');
-        $response = Http::put($url.'/players/'.$request->idteams,[
+        $response = Http::put($url.'/players/'.$request->idplayers,[
             'idplayers'=>$request->idplayers,
             'firts_name'=>$request->firts_name,
             'last_name'=>$request->last_name,
+            'position'=>$request->position,
+            'salary'=>$request->salary,
             'goals'=>$request->goals,
             'assists'=>$request->assists,
             'matches'=>$request->matches,
@@ -123,7 +130,7 @@ class jugadoresController extends Controller
            
         ]);
 
-        return redirect()->route('player.index');
+        return redirect()->route('players.index');
     }
 
     /**
@@ -143,7 +150,7 @@ class jugadoresController extends Controller
     public function view($idplayers){
         $url= env('URL_SERVER_API','http://localhost:3000/stats');
         $response = Http::get($url.'/players/'.$idplayers);
-        $team = $response->json();
+        $player = $response->json();
         return view('forms.jugadoresFormEdit',compact('player'));
     }
 }
